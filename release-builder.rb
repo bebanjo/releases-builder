@@ -4,6 +4,8 @@ require 'rubygems'
 require 'bundler'
 require 'date'
 require 'yaml'
+require 'open-uri'
+require 'base64'
 Bundler.require
 Dotenv.load
 
@@ -27,6 +29,7 @@ def get_filename(body)
   end
 end
 
+# https://github.com/jollygoodcode/jollygoodcode.github.io/issues/14
 def commit(client, repo, ref, branch, message, content)
   begin
     base_branch = client.refs(repo).find do |reference|
@@ -41,7 +44,7 @@ def commit(client, repo, ref, branch, message, content)
         path: path,
         mode: '100644',
         type: 'blob',
-        sha: client.create_blob(repo, new_content)
+        sha: client.create_blob(repo, new_content, 'base64')
       )
     end
     
@@ -54,6 +57,10 @@ def commit(client, repo, ref, branch, message, content)
   rescue
     raise 'Commit failed'
   end
+end
+
+def pr(client, repo, ref, branch, title, body)
+  client.create_pull_request(repo, ref, branch, title, body)
 end
 
 token = ENV['TOKEN']
@@ -83,5 +90,39 @@ Octokit.auto_paginate = true
 #   end
 # end
 
-commit(client, repo, ref, 'new-branch', 'This is a test', {"foo.md" => "Foo!"})
+def prepare_content(body)
+  content = Hash.new
 
+  name = get_filename(body)
+  updated_body = body
+
+  regex = /[\"|\(](https:\/\/cloud.githubusercontent.com\/.*)[\"|\)]/
+  attachments = body.scan(regex).uniq
+
+  attachments.each_with_index do |attachment, i|
+    extension = attachment[0].split('.').last
+    file = open(attachment[0]) { |f| f.read }
+    blob = Base64.encode64(file)
+    index = "%02d" % (i + 1)
+    filename = "media/#{name}-#{index}.#{extension}"
+    content[filename] = blob
+    
+    updated_body.gsub!(attachment[0], "../#{filename}")
+  end
+  
+  content["_posts/#{name}.md"] = Base64.encode64(updated_body)
+  
+  content
+end
+
+file = File.open("test.md", "rb")
+body = file.read
+content = prepare_content(body)
+
+commit(client, repo, ref, 'new-branch', 'This is the message', content)
+
+# Commit changes to the branch
+# commit(client, repo, ref, 'new-branch', 'This is the message', {"foo.md" => "Foo!"})
+
+# Create the pull request
+# pr(client, repo, ref, 'new-branch', 'This is the title', 'This is the body')
