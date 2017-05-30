@@ -3,9 +3,12 @@ GEM
   specs:
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
+    babosa (1.0.2)
+    chronic (0.10.2)
     dotenv (2.2.1)
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
+    kramdown (1.13.2)
     multipart-post (2.0.0)
     octokit (4.7.0)
       sawyer (~> 0.8.0, >= 0.5.3)
@@ -18,7 +21,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  babosa
+  chronic
   dotenv
+  kramdown
   octokit (~> 4.0)
 
 RUBY VERSION
