@@ -12,7 +12,7 @@ $stdout.sync = true
 
 class App < Sinatra::Base
 
-  get('/ping/?') do
+  post('/ping/?') do
     Thread.new{ system('./bin/build') }
     "OK"
   end
