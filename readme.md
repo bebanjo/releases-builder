@@ -1,6 +1,6 @@
 # Release Builder
 
-This script will create a Jekyll post from the body of an issue.
+This script will create a Jekyll post from the body of an issue. 
 The issue must have the tag `column:acceptance` and `frontmatter` like this:
 
 ```md
