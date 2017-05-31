@@ -1,7 +1,14 @@
 # Release Builder
 
 This script will create a Jekyll post from the body of an issue. 
-The issue must have the tag `column:acceptance` and `frontmatter` like this:
+
+The script has an endpoint triggered by GitHub `issue` webhook:
+
+```sh
+$ curl -X POST https://yourdomain.com/ping
+```
+
+The issue must also have the tag `column:acceptance` and `frontmatter` like this:
 
 ```md
 ---
