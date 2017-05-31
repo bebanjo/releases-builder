@@ -3,13 +3,6 @@ require 'bundler'
 Bundler.require
 Dotenv.load
 
-# Logs to terminal, I use this to peek into Tweetbot requests.
-# Use `puts` inside any action to log to terminal.
-#
-require 'logger'
-class ::Logger; alias_method :write, :<<; end
-$stdout.sync = true
-
 class App < Sinatra::Base
 
   post('/ping/?') do
