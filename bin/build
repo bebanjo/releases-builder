@@ -111,27 +111,26 @@ end
 token = ENV['TOKEN']
 repo  = ENV['REPO']
 ref   = ENV['REF']
-thumb = ENV['THUMB'].to_i
 
 client = Octokit::Client.new(:access_token => token)
 Octokit.auto_paginate = true
 
-# Get all issues that comply
 issues = client.list_issues(repo)
 releases = issues.map do |issue|
   issue if issue[:body].to_s.split("\n").first.include?('---')
 end.compact
 
-# Check for reactions
 releases.each do |release|
-  reactions = client.issue_reactions(repo, release[:number])
+  labels = client.labels_for_issue(repo, release[:number])
 
-  counts = Hash.new(0)
-  reactions.each do |reaction|
-    counts[reaction[:content]] += 1
+  in_acceptance = false
+  unless labels.size < 1
+    labels.each do |label|
+      in_acceptance = true if label['name'].include?('column:acceptance')
+    end
   end
 
-  if counts['+1'] >= thumb
+  if in_acceptance
     puts "=====> The build started (#{Time.now}) "
     branch  = "#{release[:number]}-#{get_slug(release[:body])}"
     content = prepare_content(release[:body])
