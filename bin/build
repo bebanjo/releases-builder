@@ -105,7 +105,11 @@ def commit(client, repo, ref, branch, message, content)
 end
 
 def pr(client, repo, ref, branch, title, body)
-  client.create_pull_request(repo, ref, branch, title, body)
+  begin
+    client.create_pull_request(repo, ref, branch, title, body)
+  rescue
+    raise 'PR failed'
+  end
 end
 
 token = ENV['TOKEN']
