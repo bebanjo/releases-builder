@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'bundler'
-Bundler.require
-Dotenv.load
+Bundler.require(:app)
 
 class App < Sinatra::Base
 

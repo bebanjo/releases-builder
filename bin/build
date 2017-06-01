@@ -1,15 +1,13 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'bundler'
-require 'dotenv'
-require 'octokit'
-require 'kramdown'
-require 'babosa'
 require 'date'
 require 'yaml'
 require 'open-uri'
 require 'base64'
+
+require 'rubygems'
+require 'bundler'
+Bundler.require(:build)
 Dotenv.load
 
 def parse_date(str)
@@ -115,6 +113,7 @@ end
 token = ENV['TOKEN']
 repo  = ENV['REPO']
 ref   = ENV['REF']
+label = ENV['LABEL']
 
 client = Octokit::Client.new(:access_token => token)
 Octokit.auto_paginate = true
@@ -131,7 +130,7 @@ if releases.size > 0
     in_acceptance = false
     if labels.size > 0
       labels.each do |label|
-        if label['name'].include?('column:acceptance')
+        if label['name'].include?(label)
           in_acceptance = true 
         end
       end
