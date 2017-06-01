@@ -16,6 +16,6 @@ class App < Sinatra::Base
 private
 
   def not_found
-    halt(404, 'Not Found')
+    halt(404, '404')
   end
 end
