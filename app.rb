@@ -10,6 +10,6 @@ class App < Sinatra::Base
   end
 
   get('/?') do
-    halt(404, '200 OK')
+    '200 OK'
   end
 end
