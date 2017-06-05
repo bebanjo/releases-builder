@@ -6,16 +6,10 @@ class App < Sinatra::Base
 
   post('/ping/?') do
     Thread.new{ system('./bin/build') }
-    "OK"
+    '202 Accepted'
   end
 
   get('/?') do
-    not_found
-  end
-
-private
-
-  def not_found
-    halt(404, '404')
+    halt(404, '200 OK')
   end
 end
