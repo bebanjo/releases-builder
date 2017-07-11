@@ -33,5 +33,5 @@ Description of the release note.
 2. `cp .env-sample .env`, edit and [get a personal token (repo access)](https://github.com/settings/tokens/new)
 3. Install dependencies with `bundle install`
 4. Run the application with `foreman start web`
-5. From the repo you want to create releases point a webhook `https://github.com/<user>/<repo>/settings/hooks`
+5. From the repo you want to create releases for add a webhook e.g. `https://github.com/<user>/<repo>/settings/hooks`
 6. Point the webhook to your ping URL e.g. `https://releases-builder.herokuapp.com/ping`
