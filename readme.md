@@ -5,7 +5,7 @@ This script will create a Jekyll post from the body of an issue.
 The script has an endpoint triggered by GitHub `issue` webhook:
 
 ```sh
-$ curl -X POST https://yourdomain.com/ping
+$ curl -X POST https://releases-builder.herokuapp.com/ping
 ```
 
 The issue must also have the tag `column:release` and `frontmatter` like this:
