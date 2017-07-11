@@ -1,4 +1,4 @@
-# Release Builder
+# Releases Builder
 
 This script will create a Jekyll post from the body of an issue. 
 
