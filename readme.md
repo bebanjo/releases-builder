@@ -26,3 +26,11 @@ Description of the release note.
 
 - `repo#number` Title of the referenced issue
 ```
+
+## Install
+
+1. `git clone git@github.com:bebanjo/releases-builder.git`
+2. `cd releases-builder`
+3. `cp .env-sample .env` and edit the environment vars
+4. `bundle install`
+5. `foreman start web`
