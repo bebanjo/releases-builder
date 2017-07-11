@@ -31,6 +31,6 @@ Description of the release note.
 
 1. `git clone git@github.com:bebanjo/releases-builder.git`
 2. `cd releases-builder`
-3. `cp .env-sample .env` and edit the environment vars
+3. `cp .env-sample .env`, edit and [fill in the personal token (repo access)](https://github.com/settings/tokens/new)
 4. `bundle install`
 5. `foreman start web`
