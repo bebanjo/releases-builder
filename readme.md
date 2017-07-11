@@ -35,3 +35,4 @@ Description of the release note.
 4. Run the application with `foreman start web` e.g. `-> https://releases-builder.herokuapp.com`
 5. The repo you want to create releases needs a webhook e.g. `https://github.com/<user>/<repo>/settings/hooks`
 6. Point the webhook to your ping URL e.g. `https://releases-builder.herokuapp.com/ping`
+7. Now when you create a repo with frontmatter and add the tag, releases builder will create a PR
