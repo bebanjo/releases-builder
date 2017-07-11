@@ -8,7 +8,7 @@ The script has an endpoint triggered by GitHub `issue` webhook:
 $ curl -X POST https://yourdomain.com/ping
 ```
 
-The issue must also have the tag `column:acceptance` and `frontmatter` like this:
+The issue must also have the tag `column:release` and `frontmatter` like this:
 
 ```md
 ---
