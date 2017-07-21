@@ -14,7 +14,7 @@ def parse_date(str)
   begin
     DateTime.parse(str).strftime('%Y-%m-%d')
   rescue
-    raise 'Invalid date'
+    puts '-----> Invalid date'
   end
 end
 
@@ -24,7 +24,7 @@ def get_title(body)
     title       = frontmatter['title']
     title
   rescue
-    raise 'Invalid frontmatter'
+    puts '-----> Invalid frontmatter'
   end
 end
 
@@ -34,7 +34,7 @@ def get_slug(body)
     slug        = frontmatter['title'].to_slug.normalize.to_s
     slug
   rescue
-    raise 'Invalid frontmatter'
+    puts '-----> Invalid frontmatter'
   end
 end
 
@@ -46,7 +46,7 @@ def get_filename(body)
     filename    = "#{date}-#{title}"
     filename
   rescue
-    raise 'Invalid frontmatter'
+    puts '-----> Invalid frontmatter'
   end
 end
 
@@ -98,7 +98,7 @@ def commit(client, repo, ref, branch, message, content)
     
     client.update_ref(repo, "heads/#{branch}", new_commit['sha'])
   rescue
-    raise 'Commit failed'
+    puts '-----> Commit failed'
   end
 end
 
@@ -106,7 +106,7 @@ def pr(client, repo, ref, branch, title, body)
   begin
     client.create_pull_request(repo, ref, branch, title, body)
   rescue
-    raise 'PR failed'
+    puts '-----> PR failed'
   end
 end
 
