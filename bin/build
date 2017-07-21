@@ -55,7 +55,7 @@ def prepare_content(body)
   name = get_filename(body)
   updated_body = body
 
-  regex = /[\"|\(](https:\/\/cloud.githubusercontent.com\/.*)[\"|\)]/
+  regex = /[\"|\(](https:\/\/cloud.githubusercontent.com\/.*|https:\/\/user-images.githubusercontent.com\/.*)[\"|\)]/
   attachments = body.scan(regex).uniq
 
   attachments.each_with_index do |attachment, i|
