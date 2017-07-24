@@ -126,6 +126,8 @@ releases = issues.map do |issue|
   issue if issue[:body].to_s.split("\n").first.include?('---')
 end.compact
 
+puts
+
 if releases.size > 0
   releases.each do |release|
     labels = client.labels_for_issue(repo, release[:number])
