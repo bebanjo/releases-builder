@@ -166,4 +166,4 @@ if releases.size > 0
   end
 end
 
-puts '-----> Done!'
+puts '=====> Done!'
