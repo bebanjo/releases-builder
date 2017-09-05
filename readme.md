@@ -36,3 +36,8 @@ Description of the release note.
 5. The repo you want to create releases needs a webhook e.g. `https://github.com/<user>/<repo>/settings/hooks`
 6. Point the webhook to your ping URL e.g. `https://releases-builder.herokuapp.com/ping`
 7. Now when you create a repo with frontmatter and add the tag, releases builder will create a PR
+
+## Release
+
+At the moment, the code is setup in a Heroku account (tech_admin@bebanjo.com user). In order to release a new version of the code, you just need to push your changes to the `stable` branch in Github, and Heroku will automatically deploy the changes.
+
