@@ -122,7 +122,7 @@ Octokit.auto_paginate = true
 
 issues = client.list_issues(repo)
 releases = issues.map do |issue|
-  issue[:body] = issue[:body].gsub(/^([ ?[-_*]]{3,} ?)[\t]*/,'---') # The Steve Parser (TM)
+  # issue[:body] = issue[:body].gsub(/^([ ?[-_*]]{3,} ?)[\t]*/,'---') # The Steve Parser (TM)
   issue if issue[:body].to_s.split("\n").first.include?('---')
 end.compact
 
