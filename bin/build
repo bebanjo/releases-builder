@@ -99,16 +99,16 @@ def commit(client, repo, ref, branch, message, content)
     new_commit = client.create_commit(repo, message, new_tree['sha'], commit['sha'])
     
     client.update_ref(repo, "heads/#{branch}", new_commit['sha'])
-  rescue
-    false
+  #rescue
+  #  false
   end
 end
 
 def pr(client, repo, ref, branch, title, body)
   begin
     client.create_pull_request(repo, ref, branch, title, body)
-  rescue
-    false
+  #rescue
+  #  false
   end
 end
 
