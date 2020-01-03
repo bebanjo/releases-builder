@@ -12,4 +12,8 @@ class App < Sinatra::Base
   get('/?') do
     '200 OK'
   end
+
+  not_found do
+    halt(404, '404 Not Found')
+  end
 end
