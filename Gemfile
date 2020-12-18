@@ -6,6 +6,7 @@ group(:build) do
   gem 'octokit', '~> 4.0'
   gem 'kramdown'
   gem 'babosa'
+  gem 'warning'
 end
 
 group(:app) do
