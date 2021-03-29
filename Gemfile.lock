@@ -9,7 +9,7 @@ GEM
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     foreman (0.87.2)
-    kramdown (2.3.0)
+    kramdown (2.3.1)
       rexml
     multipart-post (2.1.1)
     mustermann (1.1.1)
